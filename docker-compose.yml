@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:15
+    container_name: property_pg
+    restart: always
+
+    environment:
+      POSTGRES_USER: de_user
+      POSTGRES_PASSWORD: de_pass
+      POSTGRES_DB: property_dw
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

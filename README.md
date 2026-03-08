@@ -1,14 +1,14 @@
-# Kafka Streaming Data Pipeline
+# Aussie FinTech Streaming Pipeline
 
 This project is a real-time data engineering pipeline built with Apache Kafka, Apache Spark Structured Streaming, Docker, and PostgreSQL.
 
-It is designed to simulate a production-style streaming workflow that generates, processes, validates, and stores more than 10,000 events for downstream analytics.
+It simulates a production-style transaction monitoring workflow that generates, processes, validates, and stores more than 10,000 payment events for downstream analytics.
 
 ## Project Goal
 
 The objective of this project is to build an advanced streaming data platform that demonstrates:
 
-- real-time event generation
+- real-time transaction event generation
 - Kafka-based event ingestion
 - Spark Structured Streaming transformation
 - data quality validation
@@ -18,14 +18,14 @@ The objective of this project is to build an advanced streaming data platform th
 ## Target Scale
 
 - 10,000+ streaming events
-- multiple event attributes
-- real-time ingestion and processing pipeline
-- persistent storage for downstream SQL analysis
+- multi-attribute transaction records
+- real-time ingestion and processing
+- persistent storage for SQL analytics
 
 ## Planned Architecture
 
 ```text
-Event Generator
+Transaction Generator
       ↓
 Kafka Producer
       ↓
@@ -33,7 +33,7 @@ Kafka Topic
       ↓
 Spark Structured Streaming
       ↓
-Validation / Cleaning
+Validation / Fraud Rules
       ↓
 PostgreSQL Warehouse
       ↓
@@ -48,6 +48,28 @@ SQL Analytics
 - Docker
 - PostgreSQL
 - SQLAlchemy
+
+## Example Event Model
+
+```json
+{
+  "event_id": "uuid",
+  "event_ts": "2026-03-08T05:12:11Z",
+  "transaction_id": "TXN123456",
+  "customer_id": 102938,
+  "merchant_id": 48392,
+  "merchant_category": "groceries",
+  "payment_method": "card",
+  "currency": "AUD",
+  "amount": 128.45,
+  "state": "VIC",
+  "channel": "mobile_app",
+  "device_type": "ios",
+  "transaction_status": "approved",
+  "is_international": false,
+  "risk_score": 0.13
+}
+```
 
 ## Project Structure
 
@@ -77,4 +99,4 @@ kafka-streaming-pipeline/
 Project setup in progress.
 
 Next step:
-- build the local Kafka + Spark + PostgreSQL Docker environment
+- implement a Kafka producer for real-time transaction events

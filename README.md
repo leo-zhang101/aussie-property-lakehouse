@@ -1,5 +1,8 @@
 # Aussie Property Lakehouse Pipeline
 
+An end-to-end data engineering pipeline that processes Australian Bureau of Statistics building approvals datasets using Python, Apache Airflow, Docker and PostgreSQL.
+
+The pipeline implements a layered Bronze–Silver–Gold architecture and loads curated datasets into a PostgreSQL data warehouse with a star schema model for analytics.
 This project is an end-to-end batch data engineering pipeline built around Australian Bureau of Statistics building approvals data.
 
 It ingests raw ABS Excel files, processes them through Bronze, Silver, and Gold layers, performs data quality checks, and loads the final curated dataset into PostgreSQL. The workflow is orchestrated with Apache Airflow and runs in Docker.
@@ -131,7 +134,19 @@ Current result:
 ```text
 474
 ```
+## Example Query
 
+Example analytics query on the warehouse:
+
+```sql
+SELECT
+    s.state_name,
+    COUNT(*) AS approvals
+FROM fact_building_approvals f
+JOIN dim_state s
+ON f.state_id = s.state_id
+GROUP BY s.state_name
+ORDER BY approvals DESC;
 ## Summary
 
 This project demonstrates a practical batch data engineering workflow using Airflow, Docker, PostgreSQL, and layered transformations. It also includes a simple warehouse model with fact and dimension tables for downstream SQL analysis.

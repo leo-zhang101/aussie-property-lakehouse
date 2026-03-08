@@ -1,10 +1,8 @@
 # Aussie Property Lakehouse Pipeline
 
-This project implements an end-to-end batch data engineering pipeline for Australian Bureau of Statistics (ABS) building approvals data.
+This project is an end-to-end batch data engineering pipeline built around Australian Bureau of Statistics building approvals data.
 
-The pipeline ingests raw ABS Excel workbooks, processes them through Bronze, Silver, and Gold layers, applies basic data quality checks, and loads the final curated dataset into PostgreSQL. Workflow orchestration is handled with Apache Airflow and the environment runs in Docker.
-
-The project was built to simulate a practical analytics engineering workflow using a layered data architecture and reproducible orchestration.
+It ingests raw ABS Excel files, processes them through Bronze, Silver, and Gold layers, performs data quality checks, and loads the final curated dataset into PostgreSQL. The workflow is orchestrated with Apache Airflow and runs in Docker.
 
 ## Architecture
 
@@ -14,7 +12,7 @@ flowchart TD
     B --> C[Silver Layer - Cleaned and Standardised Data]
     C --> D[Gold Layer - Analytics Ready Dataset]
     D --> E[PostgreSQL Data Warehouse]
-    E --> F[Analytics / SQL Query Layer]
+    E --> F[Star Schema Model]
 
     G[Apache Airflow DAG] --> B
     G --> C
@@ -33,20 +31,6 @@ flowchart LR
     E --> F[load_to_postgres_batch]
 ```
 
-## Pipeline Overview
-
-The pipeline follows a simple layered design:
-
-- **Bronze**: raw ABS files ingested with minimal modification
-- **Silver**: cleaned and standardised intermediate datasets
-- **Gold**: final analytics-ready dataset prepared for warehouse loading
-
-The final warehouse table is:
-
-```sql
-building_approvals_gold_batch
-```
-
 ## Tech Stack
 
 - Python
@@ -59,7 +43,31 @@ building_approvals_gold_batch
 
 ## Data Source
 
-Source data is based on Australian Bureau of Statistics building approvals datasets distributed as Excel workbooks.
+Australian Bureau of Statistics building approvals dataset distributed as Excel workbooks.
+
+## Pipeline Layers
+
+### Bronze
+Raw ABS files ingested with minimal modification.
+
+### Silver
+Cleaned and standardised intermediate dataset.
+
+### Gold
+Curated analytics-ready dataset prepared for warehouse loading.
+
+## Data Warehouse Model
+
+The warehouse layer includes:
+
+### Dimension Tables
+- dim_year
+- dim_state
+- dim_dwelling_type
+- dim_sector
+
+### Fact Table
+- fact_building_approvals
 
 ## Project Structure
 
@@ -85,55 +93,45 @@ aussie-property-lakehouse/
 
 ## How to Run
 
-Start the PostgreSQL warehouse:
+Start PostgreSQL:
 
 ```bash
 docker compose up -d
 ```
 
-Start Airflow from the `airflow/` directory:
+Start Airflow from the airflow directory:
 
 ```bash
 cd airflow
 docker compose up -d
 ```
 
-Open Airflow:
+Open Airflow UI:
 
 ```text
 http://localhost:8081
 ```
 
-Trigger the DAG:
+Run the DAG:
 
 ```text
 abs_building_approvals_pipeline
 ```
 
-## Example Validation
+## Validation
 
-Check that the final warehouse table has loaded successfully:
+Final warehouse table:
 
 ```sql
 SELECT COUNT(*) FROM building_approvals_gold_batch;
 ```
 
-Expected result in the current project setup:
+Current result:
 
 ```text
 474
 ```
 
-## Notes
+## Summary
 
-This project uses batch ingestion and a layered transformation approach to keep raw, cleaned, and curated datasets separate. The workflow is designed for reproducibility and local demonstration rather than production-scale deployment.
-
-## Future Improvements
-
-Possible next steps for extending the project:
-
-- replace local storage with S3-compatible object storage
-- add dbt for transformation modelling
-- add Great Expectations for richer data validation
-- implement dimensional warehouse modelling
-- add BI dashboard integration
+This project demonstrates a practical batch data engineering workflow using Airflow, Docker, PostgreSQL, and layered transformations. It also includes a simple warehouse model with fact and dimension tables for downstream SQL analysis.

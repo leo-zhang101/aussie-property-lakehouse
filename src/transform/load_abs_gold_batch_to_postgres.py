@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 
 GOLD_PATH = BASE_DIR / "data/gold/building_approvals_gold_batch.csv"
 
-DATABASE_URL = "postgresql+psycopg2://de_user:de_pass@localhost:5432/property_dw"
+DATABASE_URL = "postgresql://de_user:de_pass@host.docker.internal:5432/property_dw"
 
 TABLE_NAME = "building_approvals_gold_batch"
 

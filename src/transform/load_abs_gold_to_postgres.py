@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 GOLD_PATH = BASE_DIR / "data" / "gold" / "building_approvals_gold.csv"
 
 engine = create_engine(
-    "postgresql://de_user:de_pass@localhost:5432/property_dw"
+    "postgresql://de_user:de_pass@host.docker.internal:5432/property_dw"
 )
 
 def load_gold_to_postgres():

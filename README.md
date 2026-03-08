@@ -5,7 +5,7 @@ This project is an end-to-end batch data engineering pipeline built around Austr
 It ingests raw ABS Excel files, processes them through Bronze, Silver, and Gold layers, performs data quality checks, and loads the final curated dataset into PostgreSQL. The workflow is orchestrated with Apache Airflow and runs in Docker.
 
 ## Architecture
-
+![Pipeline Architecture](docs/architecture/pipeline_architecture.png)
 ```mermaid
 flowchart TD
     A[ABS Building Approvals ZIP/XLSX Files] --> B[Bronze Layer - Raw Ingestion]

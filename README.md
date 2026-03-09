@@ -88,7 +88,31 @@ PostgreSQL Warehouse
       ↓
 SQL Analytics
 ```
+## Project Structure
 
+```
+real-time-fintech-fraud-pipeline
+│
+├── docker
+│   └── docker-compose.yml
+│
+├── src
+│   ├── producer
+│   │   └── event_producer.py
+│   │
+│   └── streaming
+│       └── spark_streaming_consumer.py
+│
+├── sql
+│   ├── create_tables.sql
+│   └── analytics_queries.sql
+│
+├── docs
+│   └── architecture.md
+│
+├── README.md
+└── requirements.txt
+```
 ## Tech Stack
 
 - Python

@@ -142,7 +142,58 @@ kafka-streaming-pipeline/
 └── sql/
     └── init.sql
 ```
+---
 
+## Fraud Detection Logic
+
+Fraud classification is implemented using rule-based logic inside the Spark Structured Streaming job.
+
+Rules include:
+
+- HIGH_RISK → risk_score > 0.8
+- HIGH_AMOUNT → transaction amount > 4000 AUD
+- INTERNATIONAL → transaction marked as international
+- NORMAL → all other transactions
+
+This simulates a simplified real-world fraud detection engine used by fintech companies.
+
+---
+
+## Example Fraud Analytics Queries
+
+### Fraud Rate by State
+
+```sql
+SELECT
+    state,
+    COUNT(*) AS total_transactions,
+    SUM(CASE WHEN fraud_flag <> 'NORMAL' THEN 1 ELSE 0 END) AS fraud_transactions,
+    ROUND(
+        SUM(CASE WHEN fraud_flag <> 'NORMAL' THEN 1 ELSE 0 END)::numeric / COUNT(*),
+        4
+    ) AS fraud_rate
+FROM fact_transactions
+GROUP BY state
+ORDER BY fraud_rate DESC;
+###International vs Domestic Fraud
+SELECT
+    is_international,
+    COUNT(*) AS total_transactions,
+    SUM(CASE WHEN fraud_flag <> 'NORMAL' THEN 1 ELSE 0 END) AS fraud_transactions,
+    ROUND(
+        SUM(CASE WHEN fraud_flag <> 'NORMAL' THEN 1 ELSE 0 END)::numeric / COUNT(*),
+        4
+    ) AS fraud_rate
+FROM fact_transactions
+GROUP BY is_international;
+Key Engineering Highlights
+	Built an end-to-end streaming data pipeline
+	Processed 200,000 simulated payment transactions
+	Implemented Kafka event ingestion
+	Implemented Spark Structured Streaming transformations
+	Designed a star schema warehouse model
+	Built analytical SQL fraud detection queries
+	Handled duplicate key conflicts and streaming batch writes
 ## Status
 
 Project setup in progress.

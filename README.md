@@ -175,7 +175,8 @@ flowchart LR
 
 ### Fraud Monitoring Dashboard
 
-![Fraud Monitoring Dashboard](images/dashboard.png)
+<img width="3320" height="1738" alt="dashboard" src="https://github.com/user-attachments/assets/414571de-e2d4-465a-879a-3d99cbe29a3b" />
+
 
 ---
 

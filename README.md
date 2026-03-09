@@ -14,7 +14,54 @@ The objective of this project is to build an advanced streaming data platform th
 - data quality validation
 - PostgreSQL warehouse loading
 - SQL-based analytics on streaming data
+# Real-Time Fintech Fraud Streaming Pipeline
 
+This project simulates a real-time payment fraud detection pipeline using Kafka, Spark Structured Streaming, and PostgreSQL.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph Ingestion
+        A[Python Producer]
+        B[Kafka Topic: payment_events_v2]
+    end
+
+    subgraph Streaming
+        C[Spark Structured Streaming]
+    end
+
+    subgraph Raw_Storage
+        D[payment_events_stream]
+        E[payment_metrics_stream]
+    end
+
+    subgraph Warehouse
+        F[fact_transactions]
+        G[dim_customer]
+        H[dim_merchant]
+        I[dim_state]
+    end
+
+    subgraph Analytics
+        J[Fraud rate by state]
+        K[Top high-risk transactions]
+        L[International vs domestic fraud]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    D --> F
+    D --> G
+    D --> H
+    D --> I
+    F --> J
+    F --> K
+    F --> L
+    H --> J
+    I --> J
 ## Target Scale
 
 - 10,000+ streaming events

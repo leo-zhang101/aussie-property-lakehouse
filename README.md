@@ -394,15 +394,17 @@ http://localhost:8080
 
 ---
 
-# Future Improvements
+## Future Improvements
 
-Possible extensions:
+• Deploy the pipeline on **AWS (MSK, EMR, RDS)**.
 
-- machine learning fraud models
-- real-time monitoring dashboards
-- cloud deployment (AWS / GCP)
-- streaming feature store
+• Replace rule-based fraud detection with **machine learning models**.
 
+• Implement **Kafka consumer lag monitoring**.
+
+• Add **real-time anomaly detection for fraud spikes**.
+
+• Build a **feature store for fraud modeling**.
 ---
 
 # Resume Bullet Points

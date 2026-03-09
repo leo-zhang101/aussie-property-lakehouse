@@ -72,6 +72,8 @@ G --> H[Streamlit Fraud Dashboard]
 G --> I[dbt Analytics Models]
 
 I --> J[Airflow Orchestration]
+```
+---
 
 ## Tech Stack
 

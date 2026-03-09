@@ -1,0 +1,38 @@
+postgresql://de_user:de_pass@localhost:5432/property_dwimport pandas as pd
+from pathlib import Path
+from sqlalchemy import create_engine
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+
+GOLD_PATH = BASE_DIR / "data/gold/building_approvals_gold_batch.csv"
+
+DATABASE_URL = "postgresql://de_user:de_pass@localhost:5432/property_dw"
+
+TABLE_NAME = "building_approvals_gold_batch"
+
+
+def load_gold_batch_to_postgres():
+
+    print("Loading batch gold dataset into PostgreSQL")
+
+    df = pd.read_csv(GOLD_PATH)
+
+    df["year"] = df["year"].astype(int)
+
+    engine = create_engine(DATABASE_URL)
+
+    df.to_sql(
+        TABLE_NAME,
+        engine,
+        if_exists="replace",
+        index=False
+    )
+
+    print("Batch gold dataset loaded into PostgreSQL")
+
+    print(df.head())
+
+
+if __name__ == "__main__":
+
+    load_gold_batch_to_postgres()

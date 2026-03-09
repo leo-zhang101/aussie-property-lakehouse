@@ -116,16 +116,38 @@ real-time-fintech-fraud-pipeline
 ```
 ## Sample Analytics Results
 
-### Fraud Rate by State
+## Fraud Analytics Results
 
-| State | Total Transactions | Fraud Transactions | Fraud Rate |
-|------|------|------|------|
-| WA | 33199 | 8906 | 0.2683 |
-| SA | 33032 | 8720 | 0.2640 |
-| QLD | 33570 | 8839 | 0.2633 |
-| NSW | 33219 | 8747 | 0.2633 |
-| VIC | 33244 | 8696 | 0.2616 |
-| TAS | 33513 | 8750 | 0.2611 |
+### Fraud Transactions by State
+
+| State | Total Transactions | Fraud Transactions |
+|------|------|------|
+| WA | 33199 | 8906 |
+| QLD | 33570 | 8839 |
+| TAS | 33513 | 8750 |
+| NSW | 33219 | 8747 |
+| SA | 33032 | 8720 |
+| VIC | 33244 | 8696 |
+
+### Top High-Risk Transactions
+
+Example query used to identify the highest risk transactions:
+
+```sql
+SELECT
+transaction_id,
+event_ts,
+customer_id,
+merchant_id,
+state,
+amount,
+currency,
+risk_score,
+fraud_flag
+FROM fact_transactions
+WHERE fraud_flag = 'HIGH_RISK'
+ORDER BY risk_score DESC, amount DESC
+LIMIT 10;
 
 ### Fraud Category Distribution
 

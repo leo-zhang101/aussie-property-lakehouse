@@ -24,30 +24,28 @@ Key components:
 
 ## Architecture
 
-Producer (Python)
-        │
-        ▼
-Apache Kafka (Event Stream)
-        │
-        ▼
-Spark Structured Streaming
-        │
-        ├── Fraud Detection Rules
-        ├── Data Validation
-        ├── Data Quality Metrics
-        │
-        ▼
-PostgreSQL
-   ├── payment_events_stream
-   ├── payment_metrics_stream
-   ├── data_quality_metrics
-   └── fraud_alerts
-        │
-        ▼
-Streamlit Dashboard
-        │
-        ▼
-Airflow Scheduling
+```mermaid
+flowchart LR
+
+A[Python Producer] --> B[Apache Kafka]
+
+B --> C[Spark Structured Streaming]
+
+C --> D[Fraud Detection Rules]
+C --> E[Data Validation]
+C --> F[Data Quality Metrics]
+
+D --> G[(PostgreSQL)]
+E --> G
+F --> G
+
+G --> H[Streamlit Dashboard]
+
+G --> I[dbt Warehouse Models]
+
+I --> J[Analytics Queries]
+
+J --> K[Airflow Scheduling]
 
 ## Tech Stack
 

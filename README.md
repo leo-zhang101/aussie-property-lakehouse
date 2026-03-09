@@ -298,3 +298,26 @@ Possible extensions:
 - real-time monitoring dashboards
 - cloud deployment (AWS / GCP)
 - streaming feature store
+
+---
+
+# Resume Bullet Points
+
+Example resume descriptions for this project:
+
+• Designed and implemented a real-time financial transaction processing pipeline using Apache Kafka and Spark Structured Streaming.
+
+• Built a streaming data platform capable of processing over 200,000 simulated payment events.
+
+• Implemented rule-based fraud detection logic to classify high-risk, high-amount, and international transactions in real time.
+
+• Developed a PostgreSQL data warehouse to support analytical fraud monitoring queries.
+
+• Implemented dbt data models to structure warehouse tables and enable reproducible data transformations.
+
+• Orchestrated data workflows using Apache Airflow to automate streaming and transformation tasks.
+
+• Containerized the entire platform using Docker to enable reproducible local deployment.
+
+• Developed SQL analytics queries to analyze fraud rates, geographic patterns, and transaction risk distribution.
+

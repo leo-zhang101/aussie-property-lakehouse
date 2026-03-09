@@ -18,6 +18,9 @@ The objective of this project is to build an advanced streaming data platform th
 - SQL-based analytics on streaming data
 # Real-Time Fintech Fraud Streaming Pipeline
 
+##Technology Stack
+<img width="1008" height="648" alt="image" src="https://github.com/user-attachments/assets/e183a1bf-ffb5-4c97-a305-07a600a71c62" />
+
 This project simulates a real-time payment fraud detection pipeline using Kafka, Spark Structured Streaming, and PostgreSQL.
 
 ## Architecture

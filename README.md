@@ -21,7 +21,6 @@ The objective of this project is to build an advanced streaming data platform th
 This project simulates a real-time payment fraud detection pipeline using Kafka, Spark Structured Streaming, and PostgreSQL.
 
 ## Architecture
-
 ```mermaid
 flowchart TD
     subgraph Ingestion
@@ -64,7 +63,7 @@ flowchart TD
     F --> L
     H --> J
     I --> J
----
+```
 ## Target Scale
 
 - 10,000+ streaming events

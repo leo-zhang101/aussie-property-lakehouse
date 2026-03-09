@@ -157,6 +157,62 @@ flowchart TB
     F --> G[payment_events_partitioned]
 ```
 
+---
+
+## Data Warehouse Schema
+
+```mermaid
+erDiagram
+
+payment_events_stream {
+    string transaction_id
+    timestamp event_ts
+    float amount
+    string state
+    float risk_score
+    string fraud_flag
+}
+
+payment_metrics_stream {
+    timestamp metric_ts
+    int total_transactions
+    int fraud_transactions
+    float fraud_rate
+}
+
+data_quality_metrics {
+    timestamp metric_ts
+    int total_records
+    int valid_records
+    int invalid_records
+    int duplicate_transaction_count
+}
+
+fraud_alerts {
+    timestamp alert_ts
+    string alert_type
+    float fraud_rate
+    string severity
+}
+
+fact_transactions {
+    string transaction_id
+    timestamp event_ts
+    int customer_id
+    int merchant_id
+    float amount
+    string currency
+    string state
+    float risk_score
+    string fraud_flag
+}
+
+payment_events_stream ||--o{ fact_transactions : transforms
+fact_transactions ||--o{ payment_metrics_stream : aggregates
+fact_transactions ||--o{ fraud_alerts : triggers
+fact_transactions ||--o{ data_quality_metrics : monitors
+```
+
 ## Data Model
 
 ### payment_events_stream

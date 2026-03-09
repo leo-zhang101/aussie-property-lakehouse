@@ -64,7 +64,7 @@ flowchart TD
     F --> L
     H --> J
     I --> J
-```text
+---
 ## Target Scale
 
 - 10,000+ streaming events

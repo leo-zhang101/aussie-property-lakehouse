@@ -113,6 +113,27 @@ real-time-fintech-fraud-pipeline
 ├── README.md
 └── requirements.txt
 ```
+## Sample Analytics Results
+
+### Fraud Rate by State
+
+| State | Total Transactions | Fraud Transactions | Fraud Rate |
+|------|------|------|------|
+| WA | 33199 | 8906 | 0.2683 |
+| SA | 33032 | 8720 | 0.2640 |
+| QLD | 33570 | 8839 | 0.2633 |
+| NSW | 33219 | 8747 | 0.2633 |
+| VIC | 33244 | 8696 | 0.2616 |
+| TAS | 33513 | 8750 | 0.2611 |
+
+### Fraud Category Distribution
+
+| Fraud Type | Total Transactions | Percentage |
+|------|------|------|
+| NORMAL | 147119 | 73.64% |
+| HIGH_AMOUNT | 39592 | 19.82% |
+| INTERNATIONAL | 12340 | 6.18% |
+| HIGH_RISK | 726 | 0.36% |
 ## Tech Stack
 
 - Python

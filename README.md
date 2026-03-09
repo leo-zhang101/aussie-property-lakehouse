@@ -50,46 +50,36 @@ J --> K[Airflow Scheduling]
 
 ## Tech Stack
 
-### Data Ingestion
-- Apache Kafka (Real-time event streaming)
-- Python Kafka Producer (Simulated payment events)
-
-### Stream Processing
+### Streaming Infrastructure
+- Apache Kafka
 - Apache Spark Structured Streaming
-- Micro-batch processing
-- Fraud detection rule engine
-- Data validation pipeline
+
+### Data Processing
+- Python
+- PySpark
+- Streaming ETL
+- Fraud detection rules engine
 
 ### Data Storage
 - PostgreSQL
-- Streaming sink tables
-- Partitioned tables for event storage
+- Partitioned streaming tables
+- Analytical warehouse schema
 
-### Data Quality Monitoring
-- Invalid record detection
-- Duplicate transaction detection
-- Data quality metrics tracking
+### Data Modeling
+- dbt (data build tool)
 
-### Alerting System
-- Real-time fraud rate monitoring
-- Alert thresholds
-- Fraud spike detection
+### Monitoring & Observability
+- Streamlit dashboard
+- Streaming metrics monitoring
+- Data quality monitoring
+- Fraud alert system
 
 ### Workflow Orchestration
 - Apache Airflow
-- Automated streaming pipeline scheduling
-
-### Monitoring Dashboard
-- Streamlit
-- Real-time metrics visualization
-- Fraud trend monitoring
-- Transaction throughput monitoring
 
 ### Infrastructure
 - Docker
-- Containerized PostgreSQL
-- Local streaming environment
-
+- Containerized data platform
 ---
 
 ## Pipeline Features
